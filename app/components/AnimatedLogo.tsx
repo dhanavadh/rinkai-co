@@ -33,20 +33,25 @@ const AnimatedLogo = ({
   alt = "Animated Image"
 }: AnimatedLogoProps) => {
   const [currentFrame, setCurrentFrame] = useState(0);
-  
-  // Validate that frames array is not empty
-  if (!frames || frames.length === 0) {
-    console.warn('AnimatedLogo: No frames provided');
-    return null;
-  }
 
   useEffect(() => {
+    // Only run the interval if frames exist and are not empty
+    if (!frames || frames.length === 0) {
+      return;
+    }
+
     const timer = setInterval(() => {
       setCurrentFrame((prev) => (prev + 1) % frames.length);
     }, interval);
 
     return () => clearInterval(timer);
-  }, [interval, frames.length]);
+  }, [interval, frames]);
+
+  // Validate that frames array is not empty
+  if (!frames || frames.length === 0) {
+    console.warn('AnimatedLogo: No frames provided');
+    return null;
+  }
 
   return (
     <Image

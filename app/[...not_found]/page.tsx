@@ -18,7 +18,7 @@ const NotFound = () => {
           interval={500}
           alt="Page Not Found Animation"
         />
-        <h1 className="text-xl mt-4">It seems like nothing's here</h1>    
+        <h1 className="text-xl mt-4">It seems like nothing&apos;s here</h1>    
         <Link href="/" className="mt-4 link-underline">
           Go back to Home
         </Link>    
