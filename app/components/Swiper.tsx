@@ -36,8 +36,10 @@ const Slider = () => {
               <Image alt='amigo' width={1920} height={1080} src='https://tvss01.iconroof.co.th/e6c6f6e8-e73e-40b1-9f05-5436e5f99137/Ads/promo-june-1.svg' className='hidden lg:flex absolute z-[-1] w-full h-full object-cover brightness-50'></Image>
               <Image alt='amigo' width={1920} height={1080} src='https://tvss01.iconroof.co.th/e6c6f6e8-e73e-40b1-9f05-5436e5f99137/Ads/promo-june-1.svg' className='flex lg:hidden absolute z-[-1] w-full h-full object-cover brightness-50'></Image>
               <div className='text-area-padding'>
-                  {/* <p className='title-section link'>โปรโมชั่นติดตั้งระแนงไวนิล</p> */}
-                  <p className='subtitle-section'>Fastfill – พิมพ์เอกสารราชการเป็นภาษาอังกฤษ ง่าย สะดวก รวดเร็ว</p>
+                  <p className='title-section link'>
+                    <a className='bg-neutral-50 text-neutral-800 px-2 py-1'>Fastfill – Web Service</a>
+                  </p>
+                  <p className='subtitle-section'><a className='bg-neutral-800 px-2 py-1'>Fastfill – พิมพ์เอกสารราชการเป็นภาษาอังกฤษ ง่าย สะดวก รวดเร็ว</a></p>
               </div>
           </div>        
         </SwiperSlide> 
@@ -47,11 +49,13 @@ const Slider = () => {
               <Image alt='amigo' width={1920} height={1080} src='/images/slider/fastfill_slider.png' className='hidden lg:flex absolute z-[-1] w-full h-full object-cover brightness-50'></Image>
               <Image alt='amigo' width={1920} height={1080} src='/images/slider/fastfill_slider.png' className='flex lg:hidden absolute z-[-1] w-full h-full object-cover brightness-50'></Image>
               <div className='text-area-padding'>
-                  {/* <p className='title-section link'>โปรโมชั่นติดตั้งระแนงไวนิล</p> */}
-                  <p className='subtitle-section'>Fastfill – พิมพ์เอกสารราชการเป็นภาษาอังกฤษ ง่าย สะดวก รวดเร็ว</p>
+                  <p className='title-section link'>
+                    <a className='bg-neutral-50 text-neutral-800 px-2 py-1'>Fastfill – Web Service</a>
+                  </p>
+                  <p className='subtitle-section'><a className='bg-neutral-800 px-2 py-1'>Fastfill – พิมพ์เอกสารราชการเป็นภาษาอังกฤษ ง่าย สะดวก รวดเร็ว</a></p>
               </div>
           </div>        
-        </SwiperSlide>         
+        </SwiperSlide>        
       </Swiper>
     </>
   )

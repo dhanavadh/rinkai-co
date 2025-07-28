@@ -49,7 +49,7 @@ body {
   @apply text-base font-normal font-[family-name:var(--font-noto-sans)] my-2 tracking-wide 
 }
 .text-area-padding {
-  @apply p-6 lg:px-20 lg:py-10
+  @apply p-8 w-full xl:max-w-7xl xl:mx-auto xl:px-0
 }
 
 .link-underline {
