@@ -75,9 +75,8 @@ const Navbar = () => {
               />
             </Link>
             <div className={`flex items-center gap-4 ${getTextColorClass()}`}>
-                <Link href="/about" className='link-underline'>บริการ</Link>
-                <Link href="/about" className='link-underline'>เกี่ยวกับเรา</Link>
-                <Link href="/contact" className='link-underline'>ติดต่อ</Link>
+                <Link href="/services" className='link-underline'>Services</Link>
+                <Link href="/about" className='link-underline'>About Us</Link>
             </div>
         </div>
     </div>
