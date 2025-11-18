@@ -1,57 +1,55 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-ibm-plex-sans-thai);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--font-ibm-plex-sans-thai);
+    --font-mono: var(--font-ibm-plex-mono);
 }
 
-
 :root {
-  --background: #fafafa;
-  --foreground: #262626;
-  --swiper-navigation-color: #fafafa;
-  --swiper-pagination-color: #fafafa;
-  --swiper-navigation-size: 12px;
-  --swiper-navigation-top-offset: 50%;
-  --swiper-navigation-sides-offset: 10px;
+    --background: #fafafa;
+    --foreground: #262626;
+    --swiper-navigation-color: #fafafa;
+    --swiper-pagination-color: #fafafa;
+    --swiper-navigation-size: 12px;
+    --swiper-navigation-top-offset: 50%;
+    --swiper-navigation-sides-offset: 10px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: Arial, Helvetica, sans-serif;
 }
-
 
 .swiper {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
-
 
 /* Slider Section */
 .slider-core {
-  @apply min-h-screen flex items-end text-white
+    @apply min-h-screen flex items-end text-white;
 }
 .slider-core-min {
-  @apply flex items-end text-white
+    @apply flex items-end text-white;
 }
 .title-section {
-  @apply text-2xl lg:text-3xl font-medium font-[family-name:var(--font-noto-sans)]
+    @apply text-2xl lg:text-3xl font-medium font-[family-name:var(--font-noto-sans)];
 }
 .subtitle-section {
-  @apply text-base font-normal font-[family-name:var(--font-noto-sans)] my-2 tracking-wide 
+    @apply text-base font-normal font-[family-name:var(--font-noto-sans)] my-2 tracking-wide;
 }
 .text-area-padding {
-  @apply p-8 w-full xl:max-w-7xl xl:mx-auto xl:px-0
+    @apply p-8 w-full xl:max-w-7xl xl:mx-auto xl:px-0;
 }
 
 .link-underline {
-  @apply hover:underline underline-offset-4
+    @apply hover:underline underline-offset-4;
 }
