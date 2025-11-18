@@ -32,6 +32,9 @@ export default function StatusPage() {
           </ul>
         </section>
       </div>
+      <div className="flex flex-col items-center justify-center max-w-7xl mx-auto w-full h-screen">
+        <p>Hellp</p>
+      </div>
     </>
   );
 }

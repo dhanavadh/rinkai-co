@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans_Thai, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
 import DevNavbar from "./components/common/DevNavbar";
 

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { Instagram, Mail } from "lucide-react";
 
 const DevNavbar = () => {
   const [isScrollingDown, setIsScrollingDown] = useState(false);
@@ -87,6 +88,27 @@ const DevNavbar = () => {
               className="h-8 flex lg:hidden"
             />
           </Link>
+          <div className={`flex items-center gap-4 ${getTextColorClass()}`}>
+            <Link href="/status" className="link-underline">
+              <Instagram />
+            </Link>
+            <Link href="/about" className="link-underline">
+              <Mail />
+            </Link>
+          </div>
+        </div>
+        <div className="flex items-center justify-between max-w-7xl mx-auto py-4 px-6 gap-8 sticky top-0 font-medium">
+          <div className={`flex items-center gap-4 ${getTextColorClass()}`}>
+            <Link href="/services" className="link-underline">
+              Services
+            </Link>
+            <Link href="/status" className="link-underline">
+              Status
+            </Link>
+            <Link href="/about" className="link-underline">
+              About Us
+            </Link>
+          </div>
           <div className={`flex items-center gap-4 ${getTextColorClass()}`}>
             <Link href="/services" className="link-underline">
               Services
