@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { navbarConfig } from "@/app/config/navbar";
 import { useNavbarScroll } from "../../hooks/useNavbarScroll";
 import { DesktopNavbar } from "./DesktopNavbar";
 import { MobileNavbar } from "./MobileNavbar";
@@ -18,7 +19,7 @@ const DevNavbar = () => {
     smallLogoSrc, 
     textColorClass, 
     stickyClass 
-  } = useNavbarScroll(!!hoveredMenu, isMobileMenuOpen);
+  } = useNavbarScroll(!!hoveredMenu, isMobileMenuOpen, navbarConfig.transparentPaths);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);

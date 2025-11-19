@@ -5,13 +5,14 @@ import { usePathname } from "next/navigation";
 export const useNavbarScroll = (
   isMenuHovered: boolean,
   isMobileMenuOpen: boolean,
+  transparentPaths: string[] = []
 ) => {
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isAtTop, setIsAtTop] = useState(true);
   const pathname = usePathname();
 
-  const isIndexPage = pathname === "/";
+  const isTransparentPath = transparentPaths.includes(pathname);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,14 +34,14 @@ export const useNavbarScroll = (
   }, [lastScrollY]);
 
   const getBackgroundClass = () => {
-    if (!isIndexPage || isMobileMenuOpen || isMenuHovered || !isAtTop) {
+    if (!isTransparentPath || isMobileMenuOpen || isMenuHovered || !isAtTop) {
       return "bg-neutral-50";
     }
     return "bg-linear-to-b from-neutral-900 to-transparent";
   };
 
   const getLargeLogoSrc = () => {
-    if (isMobileMenuOpen || isMenuHovered || !isIndexPage) {
+    if (isMobileMenuOpen || isMenuHovered || !isTransparentPath) {
       return "/images/logo-fish-neutral.svg";
     }
     return isAtTop
@@ -49,7 +50,7 @@ export const useNavbarScroll = (
   };
 
   const getSmallLogoSrc = () => {
-    if (isMobileMenuOpen || isMenuHovered || !isIndexPage) {
+    if (isMobileMenuOpen || isMenuHovered || !isTransparentPath) {
       return "/images/logo-fish-only-black.svg";
     }
     return isAtTop
@@ -58,20 +59,20 @@ export const useNavbarScroll = (
   };
 
   const getTextColorClass = () => {
-    if (isMobileMenuOpen || isMenuHovered || !isIndexPage) {
+    if (isMobileMenuOpen || isMenuHovered || !isTransparentPath) {
       return "text-neutral-800";
     }
     return isAtTop ? "text-neutral-50" : "text-neutral-800";
   };
 
   const setSticky = () => {
-    return isIndexPage ? "fixed" : "sticky";
+    return isTransparentPath ? "fixed" : "sticky";
   };
 
   return {
     isScrollingDown,
     isAtTop,
-    isIndexPage,
+    isTransparentPath,
     backgroundClass: getBackgroundClass(),
     largeLogoSrc: getLargeLogoSrc(),
     smallLogoSrc: getSmallLogoSrc(),
