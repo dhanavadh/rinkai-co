@@ -22,7 +22,7 @@ export default function Banner({
         <div className="flex items-center max-w-7xl w-full mx-auto">
           <section className="z-10 flex flex-col gap-4 mt-16 p-6">
             <span>
-              <p className="text-5xl text-white mb-2">{title}</p>
+              <h1 className="text-5xl text-white mb-2">{title}</h1>
               <p className="text-lg text-white">{description}</p>
             </span>
             <Link
@@ -36,10 +36,12 @@ export default function Banner({
         <Image
           width={1920}
           height={1080}
+          sizes="100vw"
           src={imageSrc}
           alt={title}
           className="absolute w-full h-full object-cover brightness-70"
           fetchPriority="high"
+          loading="eager"
         />
       </div>
     </>

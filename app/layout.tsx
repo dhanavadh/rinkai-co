@@ -63,7 +63,7 @@ export default function RootLayout({
         className={`${ibmPlexSansThai.variable} ${ibmPlexMono.variable} antialiased`}
       >
         <DevNavbar />
-        {children}
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

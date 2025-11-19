@@ -1,4 +1,10 @@
+User-agent: Googlebot
+Allow: /
+Disallow: /_next/
+
 User-agent: *
 Allow: /
+Disallow: /_next/
+Crawl-delay: 10
 
 Sitemap: https://rinkai.co/sitemap.xml

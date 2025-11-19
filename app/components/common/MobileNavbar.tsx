@@ -15,13 +15,14 @@ interface MobileNavbarProps {
 interface SubMenuProps {
   item: (typeof menuConfig.mainNav)[0];
   toggleMobileMenu: () => void;
+  id: string;
 }
 
-const SubMenu = ({ item, toggleMobileMenu }: SubMenuProps) => {
+const SubMenu = ({ item, toggleMobileMenu, id }: SubMenuProps) => {
   if (!item.megaMenu) return null;
 
   return (
-    <div className="pl-4 pt-4 flex flex-col gap-4">
+    <div id={id} className="pl-4 pt-4 flex flex-col gap-4">
       {menuConfig.megaMenus[item.megaMenu].columns.map((column) => (
         <div key={column.title}>
           <h3 className="font-medium mb-2">{column.title}</h3>
@@ -68,7 +69,7 @@ export const MobileNavbar = ({
           className="h-8"
         />
       </Link>
-      <button onClick={toggleMobileMenu} className={`${textColorClass}`}>
+      <button onClick={toggleMobileMenu} className={`${textColorClass}`} aria-label="Open mobile menu">
         <Menu />
       </button>
       <div
@@ -83,7 +84,7 @@ export const MobileNavbar = ({
               height={38}
               className="h-8 w-fit"
             />
-            <button onClick={toggleMobileMenu}>
+            <button onClick={toggleMobileMenu} aria-label="Close mobile menu">
               <X />
             </button>
           </div>
@@ -97,6 +98,9 @@ export const MobileNavbar = ({
                     onClick={() =>
                       item.megaMenu && handleSubMenuToggle(item.megaMenu)
                     }
+                    aria-expanded={openSubMenu === item.megaMenu}
+                    aria-controls={item.megaMenu ? `submenu-${item.megaMenu}` : undefined}
+                    aria-label={item.megaMenu ? `Toggle ${item.title} submenu` : undefined}
                   >
                     <span>{item.title}</span>
                     <ChevronDown
@@ -113,7 +117,7 @@ export const MobileNavbar = ({
                   </Link>
                 )}
                 {item.megaMenu && openSubMenu === item.megaMenu && (
-                  <SubMenu item={item} toggleMobileMenu={toggleMobileMenu} />
+                  <SubMenu item={item} toggleMobileMenu={toggleMobileMenu} id={`submenu-${item.megaMenu}`} />
                 )}
               </div>
             ))}
@@ -125,6 +129,7 @@ export const MobileNavbar = ({
                 href="/status"
                 className="link-underline"
                 onClick={toggleMobileMenu}
+                aria-label="Instagram profile"
               >
                 <Instagram />
               </Link>
@@ -132,6 +137,7 @@ export const MobileNavbar = ({
                 href="/about"
                 className="link-underline"
                 onClick={toggleMobileMenu}
+                aria-label="Contact us via email"
               >
                 <Mail />
               </Link>
