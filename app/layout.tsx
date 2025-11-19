@@ -17,9 +17,14 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://rinkai.co"),
   title: "Rinkai Studio – Empowering your business with Rinkai",
   description:
     "Rinkai Studio is dedicated to providing innovative solutions for your business needs.",
+  robots: "index, follow",
+  alternates: {
+    canonical: "https://rinkai.co",
+  },
   openGraph: {
     title: "Rinkai Studio – Empowering your business with Rinkai",
     description:
@@ -62,8 +67,20 @@ export default function RootLayout({
       <body
         className={`${ibmPlexSansThai.variable} ${ibmPlexMono.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Rinkai Studio",
+              url: "https://rinkai.co",
+              logo: "https://rinkai.co/logo.svg",
+            }),
+          }}
+        />
         <DevNavbar />
-        {children}
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
