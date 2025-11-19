@@ -31,8 +31,8 @@ export const menuConfig: MenuConfig = {
       href: "/about",
     },
     {
-      title: "Contact",
-      href: "/contact",
+      title: "Careers",
+      href: "/careers",
     },
   ],
   megaMenus: {
