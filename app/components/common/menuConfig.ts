@@ -1,5 +1,4 @@
 import {
-  Ship,
   Truck,
   Plane,
   Train,
@@ -7,6 +6,10 @@ import {
   Briefcase,
   Lightbulb,
   Users,
+  Code2,
+  IdCardLanyard,
+  FileText,
+  Bot,
 } from "lucide-react";
 
 import { MenuConfig } from "./types";
@@ -39,18 +42,25 @@ export const menuConfig: MenuConfig = {
           title: "APIs",
           links: [
             {
-              id: "bulk-document-processing",
-              title: "Bulk Document Processing",
-              description: "Full container ocean shipments + inland options",
+              id: "1",
+              title: "Document Processing",
+              description: "Fast and Reliable SDK for business",
               href: "/services/ocean-freight",
-              icon: Ship,
+              icon: Code2,
             },
             {
-              id: "government-documents-processing",
+              id: "2",
               title: "Government Documents Processing",
               description: "Small-volume ocean shipments + inland options",
               href: "/services/lcl",
-              icon: Truck,
+              icon: FileText,
+            },
+            {
+              id: "10",
+              title: "ML Translation",
+              description: "Finetuned for Government Documents",
+              href: "/services/lcl",
+              icon: Bot,
             },
           ],
         },
@@ -81,28 +91,21 @@ export const menuConfig: MenuConfig = {
           ],
         },
         {
-          title: "Consultant",
+          title: "Security",
           links: [
             {
               id: "1",
-              title: "Business-driven Software",
+              title: "Passkey for Workspace",
               description: "Fast and reliable air freight services",
               href: "/services/air-freight",
-              icon: Plane,
-            },
-            {
-              id: "2",
-              title: "User Experience",
-              description: "Fast and reliable air freight services",
-              href: "/services/air-freight",
-              icon: Plane,
+              icon: IdCardLanyard,
             },
           ],
         },
       ],
       banner: [
         {
-          id: "1",
+          id: "3",
           title: "Explore Our Solutions",
           description:
             "Find the perfect logistics solution for your business needs.",
@@ -117,14 +120,14 @@ export const menuConfig: MenuConfig = {
           title: "By Industry",
           links: [
             {
-              id: "retail-e-commerce",
+              id: "4",
               title: "Retail & E-commerce",
               description: "Solutions for the fast-paced retail industry",
               href: "/solutions/retail",
               icon: Briefcase,
             },
             {
-              id: "automotive",
+              id: "5",
               title: "Automotive",
               description: "Streamlined logistics for the automotive sector",
               href: "/solutions/automotive",
@@ -136,14 +139,14 @@ export const menuConfig: MenuConfig = {
           title: "By Business Need",
           links: [
             {
-              id: "supply-chain-optimization",
+              id: "6",
               title: "Supply Chain Optimization",
               description: "Improve efficiency and reduce costs",
               href: "/solutions/supply-chain-optimization",
               icon: Lightbulb,
             },
             {
-              id: "data-analytics",
+              id: "7",
               title: "Data & Analytics",
               description: "Gain insights and make data-driven decisions",
               href: "/solutions/data-analytics",
@@ -154,11 +157,11 @@ export const menuConfig: MenuConfig = {
       ],
       banner: [
         {
-          id: "2",
+          id: "8",
           title: "Explore Our Services",
           description:
             "Find the perfect logistics service for your business needs.",
-          imageSrc: "/images/img_7557.webp",
+          imageSrc: "/images/webremake.svg",
           href: "/services",
         },
       ],

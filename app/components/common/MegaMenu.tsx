@@ -11,7 +11,7 @@ interface MegaMenuProps {
 
 const chunk = <T,>(arr: T[], size: number): T[][] =>
   Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
-    arr.slice(i * size, i * size + size)
+    arr.slice(i * size, i * size + size),
   );
 
 export const MegaMenu = ({ menu }: MegaMenuProps) => {
@@ -20,25 +20,27 @@ export const MegaMenu = ({ menu }: MegaMenuProps) => {
 
   return (
     <div
-      className={`absolute top-full flex left-0 w-full shadow-lg rounded-b-lg p-8 text-neutral-800 bg-neutral-50 transition-opacity duration-300 ease-in-out ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+      className={`absolute top-full flex left-0 w-full shadow-sm rounded-b-lg p-8 text-neutral-800 bg-neutral-100 transition-opacity duration-300 ease-in-out ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
     >
-      <div className="flex w-full max-w-7xl mx-auto items-start justify-between gap-2 p-4">
+      <div className="flex w-full max-w-7xl mx-auto items-start justify-between gap-2 px-6">
         <div className="grid grid-cols-2 gap-4 w-1/2" id="menulist">
           {menu.columns.map((column) => (
             <div key={column.title}>
               <h3 className="font-bold text-lg mb-4">{column.title}</h3>
-              <div className="flex gap-8">
+              <div className="flex gap-6">
                 {chunk(column.links, 5).map((linkChunk, index) => (
                   <ul key={index} className="space-y-4">
                     {linkChunk.map((link: MegaMenuLink) => (
                       <li key={link.id}>
                         <Link
                           href={link.href}
-                          className="flex items-start gap-4 link-underline"
+                          className="flex items-start gap-4"
                         >
                           <link.icon className="h-6 w-6 text-neutral-500" />
                           <div>
-                            <p className="font-semibold">{link.title}</p>
+                            <p className="font-semibold link-underline">
+                              {link.title}
+                            </p>
                             <p className="text-sm text-neutral-500">
                               {link.description}
                             </p>

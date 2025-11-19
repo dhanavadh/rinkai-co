@@ -33,7 +33,7 @@ const SubMenu = ({ item, toggleMobileMenu }: SubMenuProps) => {
                   className="flex items-start gap-2 link-underline text-base"
                   onClick={toggleMobileMenu}
                 >
-                  <link.icon className="h-5 w-5 text-blue-500" />
+                  <link.icon className="h-5 w-5 text-neutral-500" />
                   <span>{link.title}</span>
                 </Link>
               </li>
