@@ -20,6 +20,28 @@ export const metadata: Metadata = {
   title: "Rinkai Studio – Empowering your business with Rinkai",
   description:
     "Rinkai Studio is dedicated to providing innovative solutions for your business needs.",
+  openGraph: {
+    title: "Rinkai Studio – Empowering your business with Rinkai",
+    description:
+      "Rinkai Studio is dedicated to providing innovative solutions for your business needs.",
+    images: [
+      {
+        url: "https://rinkai.co/og-img.webp",
+        width: 1200,
+        height: 630,
+        alt: "Rinkai Studio",
+      },
+    ],
+    url: "https://rinkai.co",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rinkai Studio – Empowering your business with Rinkai",
+    description:
+      "Rinkai Studio is dedicated to providing innovative solutions for your business needs.",
+    images: ["https://rinkai.co/og-img.webp"],
+  },
 };
 
 export default function RootLayout({
