@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import { useNavbarScroll } from "../../hooks/useNavbarScroll";
 import { DesktopNavbar } from "./DesktopNavbar";
 import { MobileNavbar } from "./MobileNavbar";
+import { MegaMenu } from "./MegaMenu";
 
 const DevNavbar = () => {
-  const [isMenuHovered, setIsMenuHovered] = useState(false);
+  const [hoveredMenu, setHoveredMenu] = useState<"services" | "solutions" | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const { 
@@ -17,7 +18,7 @@ const DevNavbar = () => {
     smallLogoSrc, 
     textColorClass, 
     stickyClass 
-  } = useNavbarScroll(isMenuHovered, isMobileMenuOpen);
+  } = useNavbarScroll(!!hoveredMenu, isMobileMenuOpen);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -34,15 +35,19 @@ const DevNavbar = () => {
   return (
     <header className={`w-full ${stickyClass} top-0 z-50`}>
       <nav
-        className={`font-sans w-full items-center justify-between ${isScrollingDown ? "top-[-64px]" : "top-0"} ${backgroundClass} transition-all duration-300 ease-in-out`}
+        className={`hidden md:flex font-sans w-full items-center justify-between relative transition-transform duration-300 ease-in-out ${backgroundClass} ${isScrollingDown ? "-translate-y-full" : "translate-y-0"}`}
+        onMouseLeave={() => setHoveredMenu(null)}
       >
         <DesktopNavbar 
           largeLogoSrc={largeLogoSrc}
           textColorClass={textColorClass}
           isAtTop={isAtTop}
           isIndexPage={isIndexPage}
-          onMenuHover={setIsMenuHovered}
+          onMenuHover={setHoveredMenu}
         />
+        <MegaMenu menuType={hoveredMenu} />
+      </nav>
+      <nav className={`md:hidden font-sans w-full items-center justify-between relative ${backgroundClass}`}>
         <MobileNavbar 
           smallLogoSrc={smallLogoSrc}
           textColorClass={textColorClass}

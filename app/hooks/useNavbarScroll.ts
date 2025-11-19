@@ -1,9 +1,11 @@
-
 "use client";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-export const useNavbarScroll = (isMenuHovered: boolean, isMobileMenuOpen: boolean) => {
+export const useNavbarScroll = (
+  isMenuHovered: boolean,
+  isMobileMenuOpen: boolean,
+) => {
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isAtTop, setIsAtTop] = useState(true);
@@ -31,24 +33,28 @@ export const useNavbarScroll = (isMenuHovered: boolean, isMobileMenuOpen: boolea
   }, [lastScrollY]);
 
   const getBackgroundClass = () => {
-    if (isMobileMenuOpen || isMenuHovered || !isIndexPage) {
+    if (!isIndexPage || isMobileMenuOpen || isMenuHovered || !isAtTop) {
       return "bg-neutral-50";
     }
-    return isAtTop ? "bg-linear-to-b from-neutral-800 to-transparent" : "bg-neutral-50";
+    return "bg-linear-to-b from-neutral-900 to-transparent";
   };
 
   const getLargeLogoSrc = () => {
     if (isMobileMenuOpen || isMenuHovered || !isIndexPage) {
       return "/images/logo-fish-neutral.svg";
     }
-    return isAtTop ? "/images/logo-fish-white.svg" : "/images/logo-fish-neutral.svg";
+    return isAtTop
+      ? "/images/logo-fish-white.svg"
+      : "/images/logo-fish-neutral.svg";
   };
 
   const getSmallLogoSrc = () => {
     if (isMobileMenuOpen || isMenuHovered || !isIndexPage) {
       return "/images/logo-fish-only-black.svg";
     }
-    return isAtTop ? "/images/logo-fish-only.svg" : "/images/logo-fish-only-black.svg";
+    return isAtTop
+      ? "/images/logo-fish-only.svg"
+      : "/images/logo-fish-only-black.svg";
   };
 
   const getTextColorClass = () => {

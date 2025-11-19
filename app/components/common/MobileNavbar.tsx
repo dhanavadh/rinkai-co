@@ -17,7 +17,7 @@ export const MobileNavbar = ({
   toggleMobileMenu,
 }: MobileNavbarProps) => {
   return (
-    <div className="lg:hidden flex items-center justify-between w-full max-w-7xl mx-auto py-4 px-6 gap-8">
+    <div className="md:hidden flex items-center justify-between w-full max-w-7xl mx-auto py-4 px-6 gap-8">
       <Link href="/" className="flex items-center gap-4">
         <Image
           src={smallLogoSrc}
@@ -47,25 +47,49 @@ export const MobileNavbar = ({
             </button>
           </div>
           <div className="flex flex-col p-6 gap-6 text-lg">
-            <Link href="/services" className="link-underline">
+            <Link
+              href="/services"
+              className="link-underline"
+              onClick={toggleMobileMenu}
+            >
               Services
             </Link>
-            <Link href="/solutions" className="link-underline">
+            <Link
+              href="/solutions"
+              className="link-underline"
+              onClick={toggleMobileMenu}
+            >
               Solutions
             </Link>
-            <Link href="/about" className="link-underline">
+            <Link
+              href="/about"
+              className="link-underline"
+              onClick={toggleMobileMenu}
+            >
               About Us
             </Link>
-            <Link href="/contact" className="link-underline">
+            <Link
+              href="/contact"
+              className="link-underline"
+              onClick={toggleMobileMenu}
+            >
               Contact
             </Link>
           </div>
           <div className="border-t border-neutral-200 p-6 mt-auto">
             <div className="flex items-center justify-center gap-8 mb-6">
-              <Link href="/status" className="link-underline">
+              <Link
+                href="/status"
+                className="link-underline"
+                onClick={toggleMobileMenu}
+              >
                 <Instagram />
               </Link>
-              <Link href="/about" className="link-underline">
+              <Link
+                href="/about"
+                className="link-underline"
+                onClick={toggleMobileMenu}
+              >
                 <Mail />
               </Link>
             </div>
