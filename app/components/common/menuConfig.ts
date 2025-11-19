@@ -12,7 +12,7 @@ import {
   Bot,
 } from "lucide-react";
 
-import { MenuConfig } from "./types";
+import { MenuConfig } from "@/app/lib/types";
 
 export const menuConfig: MenuConfig = {
   mainNav: [

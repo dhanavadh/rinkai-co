@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 
-import { MegaMenu as MegaMenuType, MegaMenuLink } from "./types";
+import { MegaMenu as MegaMenuType, MegaMenuLink } from "@/app/lib/types";
 
 interface MegaMenuProps {
   menu: MegaMenuType | null;
