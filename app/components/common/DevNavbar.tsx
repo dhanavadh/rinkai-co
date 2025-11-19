@@ -5,14 +5,14 @@ import { DesktopNavbar } from "./DesktopNavbar";
 import { MobileNavbar } from "./MobileNavbar";
 import { MegaMenu } from "./MegaMenu";
 
+import { menuConfig } from "./menuConfig";
+
 const DevNavbar = () => {
-  const [hoveredMenu, setHoveredMenu] = useState<"services" | "solutions" | null>(null);
+  const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const { 
     isScrollingDown, 
-    isAtTop, 
-    isIndexPage, 
     backgroundClass, 
     largeLogoSrc, 
     smallLogoSrc, 
@@ -41,11 +41,9 @@ const DevNavbar = () => {
         <DesktopNavbar 
           largeLogoSrc={largeLogoSrc}
           textColorClass={textColorClass}
-          isAtTop={isAtTop}
-          isIndexPage={isIndexPage}
           onMenuHover={setHoveredMenu}
         />
-        <MegaMenu menuType={hoveredMenu} />
+        <MegaMenu menu={hoveredMenu ? menuConfig.megaMenus[hoveredMenu] : null} />
       </nav>
       <nav className={`md:hidden font-sans w-full items-center justify-between relative ${backgroundClass}`}>
         <MobileNavbar 

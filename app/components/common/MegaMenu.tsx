@@ -1,23 +1,24 @@
 "use client";
 import Link from "next/link";
-import { menuData } from "./menuData";
+import React from "react";
+
+
+import { MegaMenuColumn } from "./types";
 
 interface MegaMenuProps {
-  menuType: "services" | "solutions" | null;
+  menu: MegaMenuColumn[] | null;
 }
 
-export const MegaMenu = ({ menuType }: MegaMenuProps) => {
-  const isOpen = !!menuType;
+export const MegaMenu = ({ menu }: MegaMenuProps) => {
+  const isOpen = !!menu;
   if (!isOpen) return null;
-
-  const data = menuData[menuType];
 
   return (
     <div
       className={`absolute top-full left-0 w-full shadow-lg rounded-b-lg p-8 text-neutral-800 bg-neutral-50 transition-opacity duration-300 ease-in-out ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
     >
-      <div className="grid grid-cols-3 gap-8 max-w-7xl mx-auto px-0 xl:px-6">
-        {data.map((column) => (
+      <div className={`grid grid-cols-${menu.length} gap-8 max-w-7xl mx-auto px-0 xl:px-6`}>
+        {menu.map((column) => (
           <div key={column.title}>
             <h3 className="font-bold text-lg mb-4">{column.title}</h3>
             <ul className="space-y-4">

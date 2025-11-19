@@ -1,8 +1,8 @@
 "use client";
-import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown, Instagram, Mail } from "lucide-react";
+import { menuConfig } from "./menuConfig";
 
 interface DesktopNavbarProps {
 
@@ -10,11 +10,7 @@ interface DesktopNavbarProps {
 
   textColorClass: string;
 
-  isAtTop: boolean;
-
-  isIndexPage: boolean;
-
-  onMenuHover: (menu: "services" | "solutions" | null) => void;
+  onMenuHover: (menu: string | null) => void;
 
 }
 
@@ -25,10 +21,6 @@ export const DesktopNavbar = ({
   largeLogoSrc,
 
   textColorClass,
-
-  isAtTop,
-
-  isIndexPage,
 
   onMenuHover,
 
@@ -84,39 +76,17 @@ export const DesktopNavbar = ({
 
         >
 
-          <Link
-
-            href="/services"
-
-            className="link-underline flex items-center gap-1"
-
-            onMouseEnter={() => onMenuHover("services")}
-
-          >
-
-            Services
-
-            <ChevronDown className="h-4 w-4" />
-
-          </Link>
-
-          <Link
-
-            href="/solutions"
-
-            className="link-underline flex items-center gap-1"
-
-            onMouseEnter={() => onMenuHover("solutions")}
-
-          >
-
-            Solutions <ChevronDown className="h-4 w-4" />
-
-          </Link>
-
-          <Link href="/about" className="link-underline" onMouseEnter={() => onMenuHover(null)}>About Us</Link>
-
-          <Link href="/contact" className="link-underline" onMouseEnter={() => onMenuHover(null)}>Contact</Link>
+          {menuConfig.mainNav.map((item) => (
+            <Link
+              key={item.title}
+              href={item.href}
+              className="link-underline flex items-center gap-1"
+              onMouseEnter={() => onMenuHover(item.megaMenu || null)}
+            >
+              {item.title}
+              {item.megaMenu && <ChevronDown className="h-4 w-4" />}
+            </Link>
+          ))}
 
         </div>
 

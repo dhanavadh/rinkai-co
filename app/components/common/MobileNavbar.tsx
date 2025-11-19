@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Instagram, Mail, Globe } from "lucide-react";
+import { menuConfig } from "./menuConfig";
 
 interface MobileNavbarProps {
   smallLogoSrc: string;
@@ -47,34 +48,16 @@ export const MobileNavbar = ({
             </button>
           </div>
           <div className="flex flex-col p-6 gap-6 text-lg">
-            <Link
-              href="/services"
-              className="link-underline"
-              onClick={toggleMobileMenu}
-            >
-              Services
-            </Link>
-            <Link
-              href="/solutions"
-              className="link-underline"
-              onClick={toggleMobileMenu}
-            >
-              Solutions
-            </Link>
-            <Link
-              href="/about"
-              className="link-underline"
-              onClick={toggleMobileMenu}
-            >
-              About Us
-            </Link>
-            <Link
-              href="/contact"
-              className="link-underline"
-              onClick={toggleMobileMenu}
-            >
-              Contact
-            </Link>
+            {menuConfig.mainNav.map((item) => (
+              <Link
+                key={item.title}
+                href={item.href}
+                className="link-underline"
+                onClick={toggleMobileMenu}
+              >
+                {item.title}
+              </Link>
+            ))}
           </div>
           <div className="border-t border-neutral-200 p-6 mt-auto">
             <div className="flex items-center justify-center gap-8 mb-6">
