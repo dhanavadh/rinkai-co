@@ -1,128 +1,68 @@
 "use client";
-import Image from "next/image";
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
-import { Instagram, Mail } from "lucide-react";
+import { useNavbarScroll } from "../../hooks/useNavbarScroll";
+import { DesktopNavbar } from "./DesktopNavbar";
+import { MobileNavbar } from "./MobileNavbar";
+import { MegaMenu } from "./MegaMenu";
+
+import { menuConfig } from "./menuConfig";
 
 const DevNavbar = () => {
-  const [isScrollingDown, setIsScrollingDown] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [isAtTop, setIsAtTop] = useState(true);
-  const pathname = usePathname();
+  const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const isIndexPage = pathname === "/";
+  const { 
+    isScrollingDown, 
+    backgroundClass, 
+    largeLogoSrc, 
+    smallLogoSrc, 
+    textColorClass, 
+    stickyClass 
+  } = useNavbarScroll(!!hoveredMenu, isMobileMenuOpen);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
 
-      // Check if at top
-      setIsAtTop(currentScrollY === 0);
-
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        // Scrolling down and past threshold
-        setIsScrollingDown(true);
-      } else {
-        // Scrolling up or at top
-        setIsScrollingDown(false);
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setIsMobileMenuOpen(false);
       }
-
-      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
-
-  // Determine styles based on page and scroll position
-  const getBackgroundClass = () => {
-    if (!isIndexPage) return "bg-neutral-50";
-    return isAtTop ? "bg-transparent" : "bg-neutral-50";
-  };
-
-  const setSticky = () => {
-    if (!isIndexPage) {
-      return "sticky";
-    } else return "fixed";
-  };
-
-  const getLargeLogoSrc = () => {
-    if (!isIndexPage) return "/images/logo-fish-neutral.svg";
-    return isAtTop
-      ? "/images/logo-fish-white.svg"
-      : "/images/logo-fish-neutral.svg";
-  };
-
-  const getSmallLogoSrc = () => {
-    if (!isIndexPage) return "/images/logo-fish-only-black.svg";
-    return isAtTop
-      ? "/images/logo-fish-only.svg"
-      : "/images/logo-fish-only-black.svg";
-  };
-
-  const getTextColorClass = () => {
-    if (!isIndexPage) return "text-neutral-800";
-    return isAtTop ? "text-neutral-50" : "text-neutral-800";
-  };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMobileMenuOpen]);
 
   return (
-    <div>
+    <header className={`w-full ${stickyClass} top-0 z-50`}>
       <nav
-        className={`font-sans w-full items-center justify-between ${setSticky()} ${isScrollingDown ? "top-[-64px]" : "top-0"} ${getBackgroundClass()} z-50 transition-all duration-300 ease-in-out`}
+        className={`hidden md:flex font-sans w-full items-center justify-between relative transition-transform duration-300 ease-in-out ${backgroundClass} ${isScrollingDown ? "-translate-y-full" : "translate-y-0"}`}
+        onMouseLeave={() => setHoveredMenu(null)}
       >
-        <div className="flex items-center justify-between max-w-7xl mx-auto py-4 px-6 gap-8">
-          <Link href="/" className="flex items-center gap-4">
-            <Image
-              src={getLargeLogoSrc()}
-              alt="Rinkai Logo"
-              width={200}
-              height={38}
-              className="h-8 hidden lg:flex"
-            />
-            <Image
-              src={getSmallLogoSrc()}
-              alt="Rinkai Logo"
-              width={100}
-              height={38}
-              className="h-8 flex lg:hidden"
-            />
-          </Link>
-          <div className={`flex items-center gap-4 ${getTextColorClass()}`}>
-            <Link href="/status" className="link-underline">
-              <Instagram />
-            </Link>
-            <Link href="/about" className="link-underline">
-              <Mail />
-            </Link>
-          </div>
-        </div>
-        <div className="flex items-center justify-between max-w-7xl mx-auto py-4 px-6 gap-8 sticky top-0 font-medium">
-          <div className={`flex items-center gap-4 ${getTextColorClass()}`}>
-            <Link href="/services" className="link-underline">
-              Services
-            </Link>
-            <Link href="/status" className="link-underline">
-              Status
-            </Link>
-            <Link href="/about" className="link-underline">
-              About Us
-            </Link>
-          </div>
-          <div className={`flex items-center gap-4 ${getTextColorClass()}`}>
-            <Link href="/services" className="link-underline">
-              Services
-            </Link>
-            <Link href="/status" className="link-underline">
-              Status
-            </Link>
-            <Link href="/about" className="link-underline">
-              About Us
-            </Link>
-          </div>
-        </div>
+        <DesktopNavbar 
+          largeLogoSrc={largeLogoSrc}
+          textColorClass={textColorClass}
+          onMenuHover={setHoveredMenu}
+        />
+        <MegaMenu menu={hoveredMenu ? menuConfig.megaMenus[hoveredMenu] : null} />
       </nav>
-    </div>
+      <nav className={`md:hidden font-sans w-full items-center justify-between relative ${backgroundClass}`}>
+        <MobileNavbar 
+          smallLogoSrc={smallLogoSrc}
+          textColorClass={textColorClass}
+          isMobileMenuOpen={isMobileMenuOpen}
+          toggleMobileMenu={toggleMobileMenu}
+        />
+      </nav>
+    </header>
   );
 };
 

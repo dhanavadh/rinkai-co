@@ -1,0 +1,77 @@
+"use client";
+import Link from "next/link";
+import Image from "next/image";
+import { ChevronDown, Instagram, Mail } from "lucide-react";
+import { menuConfig } from "./menuConfig";
+
+interface DesktopNavbarProps {
+  largeLogoSrc: string;
+
+  textColorClass: string;
+
+  onMenuHover: (menu: string | null) => void;
+}
+
+export const DesktopNavbar = ({
+  largeLogoSrc,
+
+  textColorClass,
+
+  onMenuHover,
+}: DesktopNavbarProps) => {
+  return (
+    <div className={`hidden md:flex flex-col w-full`}>
+      <div className="flex items-center justify-between max-w-7xl mx-auto py-4 px-6 gap-8 w-full">
+        <Link href="/" className="flex items-center gap-4">
+          <Image
+            src={largeLogoSrc}
+            alt="Rinkai Logo"
+            width={200}
+            height={38}
+            className="h-8 w-fit"
+          />
+        </Link>
+
+        <div className={`flex items-center gap-4 ${textColorClass}`}>
+          <Link href="/status" className="link-underline">
+            <Instagram />
+          </Link>
+
+          <Link href="/about" className="link-underline">
+            <Mail />
+          </Link>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between max-w-7xl mx-auto py-4 px-6 gap-8 w-full font-medium">
+        <div className={`flex items-center gap-8 ${textColorClass}`}>
+          {menuConfig.mainNav.map((item) => (
+            <Link
+              key={item.title}
+              href={item.href}
+              className="link-underline flex items-center gap-1"
+              onMouseEnter={() => onMenuHover(item.megaMenu || null)}
+            >
+              {item.title}
+              {item.megaMenu && <ChevronDown className="h-4 w-4" />}
+            </Link>
+          ))}
+        </div>
+
+        <div className={`flex items-center gap-4 ${textColorClass}`}>
+          <Link href="/services" className="link-underline">
+            Services
+          </Link>
+
+          <Link href="/status" className="link-underline">
+            Status
+          </Link>
+
+          <Link href="/about" className="link-underline">
+            About Us
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
