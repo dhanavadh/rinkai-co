@@ -1,7 +1,8 @@
 "use client";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, Instagram, Mail, Globe } from "lucide-react";
+import { Menu, X, Instagram, Mail, Globe, ChevronDown } from "lucide-react";
 import { menuConfig } from "./menuConfig";
 
 interface MobileNavbarProps {
@@ -11,12 +12,51 @@ interface MobileNavbarProps {
   toggleMobileMenu: () => void;
 }
 
+interface SubMenuProps {
+  item: (typeof menuConfig.mainNav)[0];
+  toggleMobileMenu: () => void;
+}
+
+const SubMenu = ({ item, toggleMobileMenu }: SubMenuProps) => {
+  if (!item.megaMenu) return null;
+
+  return (
+    <div className="pl-4 pt-4 flex flex-col gap-4">
+      {menuConfig.megaMenus[item.megaMenu].columns.map((column) => (
+        <div key={column.title}>
+          <h3 className="font-medium mb-2">{column.title}</h3>
+          <ul className="space-y-2">
+            {column.links.map((link) => (
+              <li key={link.id}>
+                <Link
+                  href={link.href}
+                  className="flex items-start gap-2 link-underline text-base"
+                  onClick={toggleMobileMenu}
+                >
+                  <link.icon className="h-5 w-5 text-blue-500" />
+                  <span>{link.title}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 export const MobileNavbar = ({
   smallLogoSrc,
   textColorClass,
   isMobileMenuOpen,
   toggleMobileMenu,
 }: MobileNavbarProps) => {
+  const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
+
+  const handleSubMenuToggle = (subMenu: string) => {
+    setOpenSubMenu(openSubMenu === subMenu ? null : subMenu);
+  };
+
   return (
     <div className="md:hidden flex items-center justify-between w-full max-w-7xl mx-auto py-4 px-6 gap-8">
       <Link href="/" className="flex items-center gap-4">
@@ -47,18 +87,38 @@ export const MobileNavbar = ({
               <X />
             </button>
           </div>
-          <div className="flex flex-col p-6 gap-6 text-lg">
+
+          <div className="flex flex-col p-6 gap-4 text-lg">
             {menuConfig.mainNav.map((item) => (
-              <Link
-                key={item.title}
-                href={item.href}
-                className="link-underline"
-                onClick={toggleMobileMenu}
-              >
-                {item.title}
-              </Link>
+              <div key={item.title}>
+                {item.megaMenu ? (
+                  <button
+                    className="link-underline text-left flex justify-between items-center w-full"
+                    onClick={() =>
+                      item.megaMenu && handleSubMenuToggle(item.megaMenu)
+                    }
+                  >
+                    <span>{item.title}</span>
+                    <ChevronDown
+                      className={`h-5 w-5 transition-transform ${openSubMenu === item.megaMenu ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className="link-underline"
+                    onClick={toggleMobileMenu}
+                  >
+                    {item.title}
+                  </Link>
+                )}
+                {item.megaMenu && openSubMenu === item.megaMenu && (
+                  <SubMenu item={item} toggleMobileMenu={toggleMobileMenu} />
+                )}
+              </div>
             ))}
           </div>
+
           <div className="border-t border-neutral-200 p-6 mt-auto">
             <div className="flex items-center justify-center gap-8 mb-6">
               <Link

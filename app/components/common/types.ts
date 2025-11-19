@@ -2,6 +2,7 @@ import React from "react";
 import { LucideProps } from "lucide-react";
 
 export interface MegaMenuLink {
+  id: string;
   title: string;
   description: string;
   href: string;
@@ -13,8 +14,17 @@ export interface MegaMenuColumn {
   links: MegaMenuLink[];
 }
 
+export interface BannerConfig {
+  id: string;
+  title: string;
+  description: string;
+  imageSrc: string;
+  href: string;
+}
+
 export type MegaMenu = {
-  [key: string]: MegaMenuColumn[];
+  columns: MegaMenuColumn[];
+  banner: BannerConfig[];
 };
 
 export type MenuConfig = {
@@ -23,5 +33,7 @@ export type MenuConfig = {
     href: string;
     megaMenu?: string;
   }[];
-  megaMenus: MegaMenu;
+  megaMenus: {
+    [key: string]: MegaMenu;
+  };
 };

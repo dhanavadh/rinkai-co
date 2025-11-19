@@ -30,6 +30,15 @@ const DevNavbar = () => {
     } else {
       document.body.style.overflow = 'unset';
     }
+
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [isMobileMenuOpen]);
 
   return (
