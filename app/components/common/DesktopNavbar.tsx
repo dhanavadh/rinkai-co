@@ -1,3 +1,4 @@
+
 "use client";
 import Link from "next/link";
 import Image from "next/image";
@@ -47,49 +48,42 @@ export const DesktopNavbar = ({
         >
           <Link
             href="/services"
-            className="flex gap-1 items-center justify-center px-2.5 py-1.5 rounded-md hover:bg-neutral-100 hover:text-neutral-800"
+            className="link-underline flex gap-1 items-center justify-center px-2.5 py-1.5 rounded-md hover:bg-neutral-100 hover:text-neutral-800"
           >
             Services
             <ChevronDown className="h-4 w-4" />
           </Link>
           <Link
             href="/services"
-            className="flex gap-1 items-center justify-center px-2.5 py-1.5 rounded-md hover:bg-neutral-100 hover:text-neutral-800"
+            className="link-underline flex gap-1 items-center justify-center px-2.5 py-1.5 rounded-md hover:bg-neutral-100 hover:text-neutral-800"
           >
             Services
             <ChevronDown className="h-4 w-4" />
           </Link>
           <Link
             href="/services"
-            className="flex gap-1 items-center justify-center px-2.5 py-1.5 rounded-md hover:bg-neutral-100 hover:text-neutral-800"
+            className="link-underline flex gap-1 items-center justify-center px-2.5 py-1.5 rounded-md hover:bg-neutral-100 hover:text-neutral-800"
           >
             Services
           </Link>
           <Link
             href="/services"
-            className="flex gap-1 items-center justify-center px-2.5 py-1.5 rounded-md hover:bg-neutral-100 hover:text-neutral-800"
+            className="link-underline flex gap-1 items-center justify-center px-2.5 py-1.5 rounded-md hover:bg-neutral-100 hover:text-neutral-800"
           >
             Services
           </Link>
         </div>
-        <div
-          className={`flex items-center gap-2 ${textColorClass}`}
-          onMouseEnter={() => onMenuHover(true)}
-          onMouseLeave={() => onMenuHover(false)}
-        >
-          <Link
-            href="/services"
-            className="flex gap-1 items-center justify-center px-2.5 py-1.5 rounded-md hover:bg-neutral-100 hover:text-neutral-800"
-          >
-            Services
-          </Link>
-          <Link
-            href="/services"
-            className="flex gap-1 items-center justify-center px-2.5 py-1.5 rounded-md hover:bg-neutral-100 hover:text-neutral-800"
-          >
-            Services
-          </Link>
-        </div>
+        <div className={`flex items-center gap-4 ${textColorClass}`}>
+            <Link href="/services" className="link-underline">
+              Services
+            </Link>
+            <Link href="/status" className="link-underline">
+              Status
+            </Link>
+            <Link href="/about" className="link-underline">
+              About Us
+            </Link>
+          </div>
       </div>
     </div>
   );
